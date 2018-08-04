@@ -3,15 +3,16 @@
 // normalize the paths : http://stackoverflow.com/questions/9756567/do-you-need-to-use-path-join-in-node-js
 import * as path from 'path';
 import * as express from 'express';
+
 // to adequate Angular build /dist/project_name/files...
-import { projectName } from './project-name';
+const angular = require('./../../angular.json');
 
 
 export class Routes {
 
   defaultRoute(req: express.Request, res: express.Response) {
     res.sendFile('index.html', {
-      root: path.join(process.cwd(), 'dist', projectName)
+      root: path.join(process.cwd(), 'dist', angular.defaultProject)
     });
   }
 

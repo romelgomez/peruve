@@ -1,0 +1,6 @@
+{
+    "myResume": {
+        "HELLO": "Hola {{ value }}, y tu tambien: {{ name }} {{lastName}}",
+        "start": "¡Hola que tal! mi nombre es: Romel Gomez. Profesionalmente me veo como desarrollador web, programador y actualmente, estoy activandome en la movida con Angular 5.x, RxJS y Material. Y en algún punto, escribi código para usar AngularJS 1.x, Algolia, Cloudinary, Node, Express, Firebase, Gulp, TypeScript, Bootstrap, jQuery, CakePHP 2.x, Openshift, GoLang, PHP, JAVA, MySql, Google App Motor para JAVA, Spring MVC 3.X, 2checkout, etc. Asi también trabaje con muchos CMS en mis 20. Me gusta mucho programar, andar en una BMX, y el Café caliente con chocolate. Y sueño con aprender muchos idiomas. Si ese soy yo, interesante verdad!"
+    }
+}

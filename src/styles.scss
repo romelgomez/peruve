@@ -1,1 +1,122 @@
 /* You can add global styles to this file, and also import other style files */
+
+// https://www.materialpalette.com/
+// https://medium.com/covalent-ui/angular-material-2-theme-tutorial-2f7e6c344006 
+// https://www.materialpalette.com/deep-orange/green
+// https://blog.thoughtram.io/angular/2017/05/23/custom-themes-with-angular-material.html
+// https://www.youtube.com/watch?v=PsgZjFTAleI
+// https://stackoverflow.com/questions/43438305/how-to-change-font-color-of-primary-palette-in-angular-material2
+
+// https://www.materialpalette.com/deep-orange/green
+// $primary-color:        #FF5722; // 500
+// $primary-color-light:  #FFCCBC; // 100
+// $primary-color-dark:   #E64A19; // 700 
+// $accent-color:         #4CAF50; // 500 
+// $primary-color-text:   #FFFFFF; // white 
+// $primary-text-color:   #212121; // 900 
+// $secondary-text-color: #757575; // 600 
+// $divider-color:        #BDBDBD; // 400 
+
+@import '~@angular/material/theming';
+@include mat-core();
+
+$orange-app-primary:    mat-palette($mat-deep-orange, 500, 100, 700);
+$orange-app-accent:     mat-palette($mat-green, 500);
+$orange-app-theme:      mat-light-theme($orange-app-primary, $orange-app-accent);
+@include angular-material-theme($orange-app-theme);
+
+body {
+    margin: 0;
+}
+
+.circular-square {
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 0;
+}
+
+.toolbar-logo {
+    padding-right: 5px;
+    width: 18px;
+    height: 18px;
+}
+
+.toolbar-site-title {
+    margin-left: 10px;
+    text-decoration: none;
+    color: white;    
+}
+
+.mat-drawer {
+    overflow: hidden;
+}
+
+.root-container {
+    position: absolute !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.container {
+    padding: 30px;
+}
+
+
+.sidebar-container {
+    margin: 20px 5px 0 5px;    
+    text-align: center;
+}
+
+.sidebar-logo {
+    // display:block;
+    // margin:auto;
+    height: 45px;
+    width: 45px;
+}
+
+.sidebar-close-button-container {
+    margin-top: 10px;
+}
+
+// .toolbar-icon {
+//     padding: 0 14px;
+// }
+  
+.toolbar-spacer {
+    flex: 1 1 auto;
+}
+
+.toolbar-github-link {
+    vertical-align: sub;
+}
+
+
+.sidebar-root-container {
+    background: black;
+}
+
+.sidebar-mat-nav-list a {
+    color: white !important;
+}
+
+.lang-icons {
+    vertical-align: text-bottom !important;
+} 
+
+.theme__button2 {
+    color: #fff !important; 
+}
+
+
+@media screen and (max-width: 812px) {
+    .toolbar-site-title > button:first-of-type {
+        display: none;
+    }
+}
+@media screen and (min-width:813px) {
+    .toolbar-site-title > button:last-of-type {
+        display: none;
+    }
+}

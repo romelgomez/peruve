@@ -45,7 +45,8 @@ import * as methodOverride from 'method-override';
 import * as helmet from 'helmet'; // Security
 
 // to adequate Angular build /dist/project_name/files...
-import { projectName } from './project-name';
+const angular = require('./../../angular.json');
+
 
 /**
  *
@@ -71,12 +72,12 @@ export class App {
     this.app.use( helmet() );
 
     if ( NODE_ENV === 'development' ) {
-      this.app.use( express.static( path.join(process.cwd(), 'dist', projectName )));
+      this.app.use( express.static( path.join(process.cwd(), 'dist', angular.defaultProject )));
       // log every request to the console
       this.app.use(morgan('dev'));
     } else {
       this.app.use(compression());
-      this.app.use( express.static( path.join( process.cwd(), 'dist', projectName ), { immutable : true, maxAge: '7d' }));
+      this.app.use( express.static( path.join( process.cwd(), 'dist', angular.defaultProject ), { immutable : true, maxAge: '7d' }));
     }
 
     // parse application/x-www-form-urlencoded

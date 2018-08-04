@@ -27,6 +27,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/ng-snotify/styles/dark.css",
               "src/styles.scss"
             ],
             "scripts": []
