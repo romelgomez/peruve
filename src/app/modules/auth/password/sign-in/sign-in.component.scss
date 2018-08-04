@@ -1,0 +1,9 @@
+mat-error:not(:first-of-type) { display: none; }
+
+.invalid {
+    color:red;
+  } 
+  
+  .valid {
+    color:greenyellow;
+  } 

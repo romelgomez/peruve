@@ -1,0 +1,57 @@
+<form [formGroup]="signInForm" (ngSubmit)="onSubmit()" novalidate>
+    <mat-form-field>
+        <input matInput placeholder="Email" class="form-control" formControlName="email">
+        <mat-error *ngIf="email().invalid">{{emailErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <div formGroupName="password" style="margin-top: 10px;">
+        <mat-form-field>
+            <input matInput placeholder="Clave" class="form-control" formControlName="original">
+            <mat-error *ngIf="original().invalid">
+                {{originalErrorMessage()}} </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Repetir Clave" class="form-control" formControlName="copy">
+            <mat-error *ngIf="copy().invalid">
+                {{copyErrorMessage()}}
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+
+
+    <button mat-raised-button type="submit" [disabled]="signInForm.invalid">Continuar</button>
+
+
+    <p><b>{{password().invalid && copy().touched?  passwordErrorMessage() : ''}}</b></p>
+
+
+    <div style="margin-top:10px;">
+        <mat-list style="background: rgb(231, 255, 225);padding: 15px;border-radius: 5px;">
+            <mat-list-item>
+                <mat-icon [ngClass]="{'invalid': signInForm.invalid, 'valid': signInForm.valid}">lens</mat-icon> &nbsp; <b>Form:</b> &nbsp; {{ signInForm.invalid ? 'Invalid' : 'Valid' }}
+                <mat-divider></mat-divider>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon [ngClass]="{'invalid': email().invalid, 'valid': email().valid }">lens</mat-icon> &nbsp; <b>Email:</b> &nbsp; {{ email().invalid ? 'Invalid' : 'Valid' }} &nbsp; &nbsp; <b>Validators:</b>						&nbsp; &nbsp; (required,email)
+                <mat-divider></mat-divider>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon [ngClass]="{'invalid': password().invalid, 'valid': password().valid }">lens</mat-icon> &nbsp; <b>Password:</b> &nbsp; {{ password().invalid ? 'Invalid' : 'Valid' }} &nbsp; &nbsp; <b>Validators:</b>						&nbsp; &nbsp; (areEqual)
+                <mat-divider></mat-divider>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon [ngClass]="{'invalid': original().invalid, 'valid': original().valid }">lens</mat-icon> &nbsp; <b>Original Password:</b> &nbsp; {{ original().invalid ? 'Invalid' : 'Valid' }} &nbsp; &nbsp;
+                <b>Validators:</b> &nbsp; &nbsp; (required,minLength)
+                <mat-divider></mat-divider>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon [ngClass]="{'invalid': copy().invalid, 'valid': copy().valid }">lens</mat-icon> &nbsp; <b>Copy Password:</b> &nbsp; {{ copy().invalid ? 'Invalid' : 'Valid' }} &nbsp; &nbsp; <b>Validators:</b>						&nbsp; &nbsp; (required)
+            </mat-list-item>
+
+        </mat-list>
+    </div>
+
+
+</form>
