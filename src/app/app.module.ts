@@ -7,45 +7,34 @@ import { HttpClientModule } from '@angular/common/http';
 
 // ROOT COMPONENTS
 import { AppComponent } from './components/app/app.component';
-import { WhiteLabelsComponent } from './components/white-labels/white-labels.component';
+import { LandingComponent } from './components/landing/landing.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 // SERVICES
 import { AuthService } from './modules/auth/guards/auth.service';
-import { MapsaludApiService } from './services/mapsalud-api.service';
 
 // MODULES
 import { AuthModule } from './modules/auth';
-import { SomosOhModule } from './modules/somos-oh';
-
-
-const appRoutes: Routes = [
-  { path: 'white-labels',                 component: WhiteLabelsComponent },
-  { path: '',                             component: WhiteLabelsComponent },
-  { path: '**',                           component: PageNotFoundComponent }
-];
-
+import { BlogModule } from './modules/blog/';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
   providers : [
     AuthService,
-    MapsaludApiService
   ],
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    WhiteLabelsComponent,
+    LandingComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AuthModule,
-    SomosOhModule,
+    BlogModule,
     HttpClientModule,
-    RouterModule.forRoot(
-      appRoutes,
-    ),
+    AppRoutingModule,
   ],
   bootstrap: [AppComponent]
 })
