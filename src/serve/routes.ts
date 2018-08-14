@@ -5,14 +5,14 @@ import * as path from 'path';
 import * as express from 'express';
 
 // to adequate Angular build /dist/project_name/files...
-const angular = require('./../../angular.json');
+// const angular = require('./../../angular.json');
 
 
 export class Routes {
 
   defaultRoute(req: express.Request, res: express.Response) {
     res.sendFile('index.html', {
-      root: path.join(process.cwd(), 'dist', angular.defaultProject)
+      root: path.join(process.cwd(), 'dist')
     });
   }
 
@@ -27,45 +27,60 @@ export class Routes {
     });
 
     app.get('/my-resume', function(req: express.Request, res: express.Response) {
-        this.defaultRoute(req, res);
+        // this.defaultRoute(req, res);
+        res.sendFile('resume.html', {
+            root: path.join(process.cwd(), 'dist' )
+        });
     });
 
-    app.get('/contact', function(req: express.Request, res: express.Response) {
-        this.defaultRoute(req, res);
+    app.get('/lima', function(req: express.Request, res: express.Response) {
+        res.sendFile('lima/index.html', {
+            root: path.join(process.cwd(), 'dist' )
+        });
     });
 
-    app.get('/login', function(req: express.Request, res: express.Response) {
-        this.defaultRoute(req, res);
+    app.get('/lima/blog', function(req: express.Request, res: express.Response) {
+        res.sendFile('lima/index.html', {
+            root: path.join(process.cwd(), 'dist' )
+        });
     });
 
-    app.get('/account', function(req: express.Request, res: express.Response) {
-        this.defaultRoute(req, res);
-    });
+    // app.get('/contact', function(req: express.Request, res: express.Response) {
+    //     this.defaultRoute(req, res);
+    // });
 
-    app.get('/terms-of-service', function(req: express.Request, res: express.Response) {
-        this.defaultRoute(req, res);
-    });
+    // app.get('/login', function(req: express.Request, res: express.Response) {
+    //     this.defaultRoute(req, res);
+    // });
 
-    app.get('/privacy-policy', function(req: express.Request, res: express.Response) {
-        this.defaultRoute(req, res);
-    });
+    // app.get('/account', function(req: express.Request, res: express.Response) {
+    //     this.defaultRoute(req, res);
+    // });
 
-    // TO-DO API
-    app.post('/api/to-do', function(req: express.Request, res: express.Response) {
-        console.log('sabe one to-do ');
-    });
+    // app.get('/terms-of-service', function(req: express.Request, res: express.Response) {
+    //     this.defaultRoute(req, res);
+    // });
 
-    app.get('/api/to-do', function(req: express.Request, res: express.Response) {
-        console.log('Get all to-do');
-    });
+    // app.get('/privacy-policy', function(req: express.Request, res: express.Response) {
+    //     this.defaultRoute(req, res);
+    // });
 
-    app.get('/api/to-do/:id', function(req: express.Request, res: express.Response) {
-        console.log('get to-do by id:', req.params.id);
-    });
+    // // TO-DO API
+    // app.post('/api/to-do', function(req: express.Request, res: express.Response) {
+    //     console.log('sabe one to-do ');
+    // });
 
-    app.get('/oops', (req: express.Request, res: express.Response) => {
-      this.defaultRoute(req, res);
-    });
+    // app.get('/api/to-do', function(req: express.Request, res: express.Response) {
+    //     console.log('Get all to-do');
+    // });
+
+    // app.get('/api/to-do/:id', function(req: express.Request, res: express.Response) {
+    //     console.log('get to-do by id:', req.params.id);
+    // });
+
+    // app.get('/oops', (req: express.Request, res: express.Response) => {
+    //   this.defaultRoute(req, res);
+    // });
 
     app.get('*', (req: express.Request, res: express.Response) => {
       this.defaultRoute(req, res);
