@@ -65,7 +65,8 @@ gulp.task('buildServe', function() {
 //   });
 
 gulp.task('prefabricated', function () {
-    return gulp.src(['src/prebuilt/**/*', 'src/prebuilt/**/*'])
+    return gulp.src(['src/prebuilt/**/*'])
+        // .pipe(useref())
         .pipe(gulpif('*.js', uglify()))
         .pipe(gulpif('*.css', csso()))
         .pipe(gulpif('*.html', htmlmin({collapseWhitespace: true})))
