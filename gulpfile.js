@@ -5,6 +5,12 @@ const ts    = require('gulp-typescript');
 var exec    = require('child_process').exec;
 var del     = require('del');
 var nodemon = require("gulp-nodemon");
+var gulpif  = require('gulp-if');
+var csso    = require('gulp-csso');
+var useref  = require('gulp-useref');
+var uglify  = require('gulp-uglify');
+var htmlmin = require('gulp-htmlmin');
+
 
 
 // npx ts-node dist/server/development.ts
@@ -49,7 +55,24 @@ gulp.task('buildServe', function() {
         .pipe(gulp.dest('dist/server'));
 });
 
-gulp.task('build', ['build_angular_project'], function() {
+// gulp.task('', function() {
+//     return gulp.src('dist/peruve/index.html')
+//       .pipe(useref())
+//       .pipe(gulpif('*.js', uglify()))
+//       .pipe(gulpif('*.css', csso()))
+//       .pipe(gulpif('*.html', htmlmin({collapseWhitespace: true})))
+//       .pipe(gulp.dest('dist/peruve/'));
+//   });
+
+gulp.task('prefabricated', function () {
+    return gulp.src(['src/prebuilt/**/*', 'src/prebuilt/**/*'])
+        .pipe(gulpif('*.js', uglify()))
+        .pipe(gulpif('*.css', csso()))
+        .pipe(gulpif('*.html', htmlmin({collapseWhitespace: true})))
+        .pipe(gulp.dest('dist'));
+});
+
+gulp.task('build', ['build_angular_project', 'prefabricated'], function() {
     return gulp.start('buildServe');
 });
 

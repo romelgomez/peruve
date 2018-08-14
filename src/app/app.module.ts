@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 // ROOT COMPONENTS
 import { AppComponent } from './components/app/app.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { ResumeComponent } from './components/resume/resume.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 // SERVICES
@@ -27,6 +28,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     PageNotFoundComponent,
     LandingComponent,
+    ResumeComponent,
   ],
   imports: [
     BrowserModule,
