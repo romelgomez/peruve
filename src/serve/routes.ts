@@ -8,41 +8,56 @@ import * as express from 'express';
 // const angular = require('./../../angular.json');
 
 
+
 export class Routes {
 
-  defaultRoute(req: express.Request, res: express.Response) {
-    res.sendFile('index.html', {
-      root: path.join(process.cwd(), 'dist')
-    });
-  }
 
   paths(app: express.Application) {
+
+    /**
+     *  GENERICS ROUTES
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+    function defaultRoute(req: express.Request, res: express.Response) {
+        res.sendFile('index.html', {
+            root: path.join(process.cwd(), 'dist')
+        });
+    }
+
+    function limaRoute(req: express.Request, res: express.Response) {
+        res.sendFile('lima/index.html', {
+            root: path.join(process.cwd(), 'dist')
+        });
+    }
+
+    /**
+     *  RUTAS
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
     app.get('/', function(req, res) {
         // Rewrite Cache-Control set defined in app.js
         // res.set({
         //  'Cache-Control': 'no-cache'
         // });
-        this.defaultRoute(req, res);
+        defaultRoute(req, res);
     });
 
     app.get('/my-resume', function(req: express.Request, res: express.Response) {
-        // this.defaultRoute(req, res);
         res.sendFile('resume.html', {
             root: path.join(process.cwd(), 'dist' )
         });
     });
 
     app.get('/lima', function(req: express.Request, res: express.Response) {
-        res.sendFile('lima/index.html', {
-            root: path.join(process.cwd(), 'dist' )
-        });
+        limaRoute(req, res);
     });
 
     app.get('/lima/blog', function(req: express.Request, res: express.Response) {
-        res.sendFile('lima/index.html', {
-            root: path.join(process.cwd(), 'dist' )
-        });
+        limaRoute(req, res);
+    });
+
+    app.get('/lima/login', function(req: express.Request, res: express.Response) {
+        limaRoute(req, res);
     });
 
     // app.get('/contact', function(req: express.Request, res: express.Response) {
@@ -83,7 +98,7 @@ export class Routes {
     // });
 
     app.get('*', (req: express.Request, res: express.Response) => {
-      this.defaultRoute(req, res);
+        defaultRoute(req, res);
     });
 
   }
