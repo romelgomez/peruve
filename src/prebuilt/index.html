@@ -518,49 +518,6 @@
                     </div>
                 </div>
 
-                <!-- <div class="plan col-12 mx-2 my-2 justify-content-center col-lg-3">
-                    <div class="plan-header text-center pt-5">
-                        <h3 class="plan-title mbr-fonts-style display-5">
-                        UlTIMATE
-                    </h3>
-                        <div class="plan-price">
-                            <span class="price-value mbr-fonts-style display-5">
-                            $
-                        </span>
-                            <span class="price-figure mbr-fonts-style display-1">
-                            799</span>
-                            <small class="price-term mbr-fonts-style display-7">
-                            USD
-                        </small>
-                        </div>
-                    </div>
-                    <div class="plan-body pb-5">
-                        <div class="plan-list align-center">
-                            <ul class="list-group list-group-flush mbr-fonts-style display-7">
-                                <li class="list-group-item">1 Dominio .com .net .pe
-                                </li>
-                                <li class="list-group-item">Certificado Https (Candado Verde)
-                                </li>
-                                <li class="list-group-item">Hosting (2 meses Pagos)
-                                </li>
-                                <li class="list-group-item">VPS 16GB RAM
-                                </li>
-                                <li class="list-group-item">6 vCPU
-                                </li>
-                                <li class="list-group-item">320 GB SSD Espacio
-                                </li>
-                                <li class="list-group-item">6 TB transferencia mensual
-                                </li>
-                                <li class="list-group-item">Mes adicional 199$ USD
-                                </li>
-                                <li class="list-group-item">Web (hasta 14 secciones) o Un CMS administrable.
-                                </li>
-                                <li class="list-group-item">Post Entrega: Servicios desde 7$</li>
-                            </ul>
-                        </div>
-                        <div class="mbr-section-btn text-center pt-4"><a href="" class="btn btn-primary display-4">Solicitar</a></div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </section>
@@ -790,14 +747,14 @@
                     submitHandler: form => {
 
                         let query_obj = {
-                            url: '/some-url',
+                            url: '/',
                             data: {
                                 name:       $.trim(strip(form['name'].value)),
                                 email:      $.trim(strip(form['email'].value)),
                                 phone:      $.trim(strip(form['phone'].value)),
                                 message:    $.trim(strip(form['message'].value)),
                             },
-                            type: 'GET',
+                            type: 'POST',
                             dataType: 'json'
                         };
 
@@ -805,6 +762,13 @@
 
                         // clearForm(formReference, validatorFormReference);
                         // swal('El mensaje ha sido enviado.');
+                        // $.ajax( query_obj )
+                        //     .then( response  => {
+                        //         swal(response.mensaje);
+                        //     })
+                        //     .catch( error => {
+                        //         swal(error.mensaje);
+                        //     });
 
                     },
                     rules: {
