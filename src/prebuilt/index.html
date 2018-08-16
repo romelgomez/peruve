@@ -14,6 +14,18 @@
     <link rel="stylesheet" href="assets/theme/css/style.min.css" type="text/css">
     <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.min.css" type="text/css">
 
+    <style>
+        label.error {
+            color: #ff8080;
+            margin: 0;
+            padding: 7px 0 0 0;
+            text-shadow: 0 0 7px black;
+        }    
+        .form-container {
+            min-height: 500px;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -638,35 +650,40 @@
         </div>
         <div class="container">
             <div class="row justify-content-center">
-                <div class="media-container-column col-lg-8" data-form-type="formoid">
+                <div class="media-container-column col-lg-8 form-container">
                     <div data-form-alert="" hidden="">
                         Thanks for filling out the form!
                     </div>
 
-                    <form class="mbr-form" action="" method="post">
+                    <!-- 
+                        form id: contact-form
+                        inputs id: name,  email, phone, message
+                     -->
+
+                    <form id="contact-form" class="mbr-form">
                         <div class="row row-sm-offset">
                             <div class="col-md-4 multi-horizontal" data-for="name">
                                 <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="name-form1-m">Nombre</label>
-                                    <input type="text" class="form-control" name="name" data-form-field="Name" required="" id="name-form1-m">
+                                    <input type="text" class="form-control" name="name" data-form-field="Name" required="" id="name">
                                 </div>
                             </div>
                             <div class="col-md-4 multi-horizontal" data-for="email">
                                 <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="email-form1-m">Email</label>
-                                    <input type="email" class="form-control" name="email" data-form-field="Email" required="" id="email-form1-m">
+                                    <input type="email" class="form-control" name="email" data-form-field="Email" required="" id="email">
                                 </div>
                             </div>
                             <div class="col-md-4 multi-horizontal" data-for="phone">
                                 <div class="form-group">
                                     <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-m">Teléfono</label>
-                                    <input type="tel" class="form-control" name="phone" data-form-field="Phone" id="phone-form1-m">
+                                    <input type="tel" class="form-control" name="phone" data-form-field="Phone" id="phone">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group" data-for="message">
                             <label class="form-control-label mbr-fonts-style display-7" for="message-form1-m">Mensaje</label>
-                            <textarea type="text" class="form-control" name="message" rows="7" data-form-field="Message" id="message-form1-m"></textarea>
+                            <textarea type="text" class="form-control" name="message" rows="7" data-form-field="Message" id="message"></textarea>
                         </div>
 
                         <span class="input-group-btn">
@@ -743,11 +760,98 @@
     <script src="assets/web/assets/jquery/jquery.min.js"></script>
     <script src="assets/popper/popper.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/jquery-validation/jquery.validate.min.js"></script>
+    <script src="assets/jquery-validation/additional-methods.min.js"></script>
+    <script src="assets/jquery-validation/localization/messages_es_PE.min.js"></script>
     <script src="assets/smoothscroll/smooth-scroll.min.js"></script>
     <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
     <script src="assets/ytplayer/jquery.mb.ytplayer.min.js"></script>
     <script src="assets/parallax/jarallax.min.js"></script>
     <script src="assets/theme/js/script.min.js"></script>
+
+    <script>
+
+
+        setTimeout(function(){
+            console.log('ok');
+            
+            // https://stackoverflow.com/a/47140708/2513972
+            function strip(html){
+                var doc = new DOMParser().parseFromString(html, 'text/html');
+                return doc.body.textContent || "";
+            }
+
+            // form id: contact-form
+            // inputs id: name,  email, phone, message
+
+            let formReference = $("#contact-form");
+            let validatorFormReference = formReference
+                .validate({
+                    submitHandler: form => {
+
+                        let query_obj = {
+                            url: '/some-url',
+                            data: {
+                                name:       $.trim(strip(form['name'].value)),
+                                email:      $.trim(strip(form['email'].value)),
+                                phone:      $.trim(strip(form['phone'].value)),
+                                message:    $.trim(strip(form['message'].value)),
+                            },
+                            type: 'GET',
+                            dataType: 'json'
+                        };
+
+                        console.log('query_obj: ', query_obj);
+
+                        // clearForm(formReference, validatorFormReference);
+                        // swal('El mensaje ha sido enviado.');
+
+                    },
+                    rules: {
+                        'name' : {
+                            required: true,
+                        },
+                        'email' : {
+                            required: true,
+                            email: true
+                        },
+                        'phone' : {
+                            required: true,
+                        },
+                        'message' : {
+                            required: true,
+                        },
+                    },
+                    messages: {
+                        'name': {
+                            required : 'El nombre es requerido.',
+                        },
+                        'email': {
+                            required : 'El email es requerido.',
+                        },
+                        'phone': {
+                            required : 'El teléfono es requerido.',
+                        },
+                        'message': {
+                            required: 'El mensaje es requerido.',
+                        },
+                    }
+                });
+
+
+
+            function clearForm  ( form , validator = null ) {
+                if (validator !== null) {
+                    validator.resetForm();
+                } 
+                form
+                    .trigger("reset");
+            }
+
+
+        });
+    
+    </script>
 
 </body>
 
