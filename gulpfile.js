@@ -32,7 +32,7 @@ gulp.task('serve', function () {
 });
 
 gulp.task('build_angular_project', function (cb) {
-    exec('ng build', function (err, stdout, stderr) {
+    exec('ng build --prod --build-optimizer', function (err, stdout, stderr) {
         console.log(stdout);
         console.log(stderr);
         cb(err);
@@ -67,9 +67,9 @@ gulp.task('buildServe', function() {
 gulp.task('prefabricated', function () {
     return gulp.src(['src/prebuilt/**/*'])
         // .pipe(useref())
-        .pipe(gulpif('*.js', uglify()))
-        .pipe(gulpif('*.css', csso()))
-        .pipe(gulpif('*.html', htmlmin({collapseWhitespace: true})))
+        // .pipe(gulpif('*.js', uglify()))
+        // .pipe(gulpif('*.css', csso()))
+        // .pipe(gulpif('*.html', htmlmin({collapseWhitespace: true})))
         .pipe(gulp.dest('dist'));
 });
 

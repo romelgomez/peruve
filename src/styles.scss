@@ -25,6 +25,10 @@ $orange-app-accent:     mat-palette($mat-green, 500);
 $orange-app-theme:      mat-light-theme($orange-app-primary, $orange-app-accent);
 @include angular-material-theme($orange-app-theme);
 
+// Bootstrap
+@import 'node_modules/bootstrap/scss/bootstrap';
+
+
 body {
     margin: 0;
 }
