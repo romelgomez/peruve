@@ -13,7 +13,19 @@
     <link rel="stylesheet" href="assets/mobirise-icons/mobirise-icons.min.css" type="text/css">
     <link rel="stylesheet" href="assets/theme/css/style.min.css" type="text/css">
     <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.min.css" type="text/css">
+    <link rel="stylesheet" href="assets/jquery-easy-loading/jquery.loading.css" type="text/css">
     
+    <style>
+        label.error {
+            color: #ff3b3b;
+            margin: 0;
+            padding: 7px 0 0 0;
+        }    
+        .form-container {
+            min-height: 500px;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -37,7 +49,7 @@
                 </span>
                 </div>
             </div>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
                     <li class="nav-item">
                         <a class="nav-link link text-white display-4" href="/lima/blog">
@@ -50,7 +62,7 @@
                         <span class="mbri-users mbr-iconfont mbr-iconfont-btn"></span> Entrar
                     </a>
                 </div>
-            </div>
+            </div> -->
         </nav>
     </section>
 
@@ -98,6 +110,21 @@
             <h3 class="mbr-section-subtitle pb-5 mbr-fonts-style display-5">Laboral y Colaboraciones&nbsp;</h3>
 
             <div class="container timelines-container" mbri-timelines="">
+
+                <div class="row timeline-element  separline">
+                        <span class="iconsBackground">
+                        <span class="mbr-iconfont mbri-laptop"></span>
+                        </span>
+                    <div class="col-xs-12 col-md-6 align-left ">
+                        <div class="timeline-text-content">
+                            <h4 class="mbr-timeline-title pb-3 mbr-fonts-style display-5">Freelancer Web Developer calatonight.com</h4>
+                            <p class="mbr-timeline-text mbr-fonts-style display-7">
+                                Diseñar, Maquetar un sitio web simple. Elaborado con Angular 6, jQuery, Bootstrap, Express, Nginx y hosteado en Digitalocean.com                                  
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="row timeline-element reverse separline">
                     <span class="iconsBackground">
                     <span class="mbr-iconfont mbri-responsive"></span>
@@ -238,7 +265,7 @@
         </div>
     </section>
 
-    <section class="mbr-section form1 cid-r06D2HwZ18" id="form1-16">
+    <section class="mbr-section form1 cid-r06D2HwZ18" id="form1-m">
 
         <div class="container">
             <div class="row justify-content-center">
@@ -250,37 +277,45 @@
         </div>
         <div class="container">
             <div class="row justify-content-center">
-                <div class="media-container-column col-lg-8" data-form-type="formoid">
-                    <div data-form-alert="" hidden="">Thanks for filling out the form!</div>
+                <div class="media-container-column col-lg-8 form-container">
+                    <div data-form-alert="" hidden="">
+                        Thanks for filling out the form!
+                    </div>
 
-                    <form class="mbr-form" action="/" method="post">
+                    <!-- 
+                        form id: contact-form
+                        inputs id: name,  email, phone, message
+                        -->
+
+                    <form id="contact-form" class="mbr-form" novalidate action=""> 
                         <div class="row row-sm-offset">
                             <div class="col-md-4 multi-horizontal" data-for="name">
                                 <div class="form-group">
-                                    <label class="form-control-label mbr-fonts-style display-7" for="name-form1-16">Nombre</label>
-                                    <input type="text" class="form-control" name="name" data-form-field="Name" required="" id="name-form1-16">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="name-form1-m">Nombre</label>
+                                    <input type="text" class="form-control" name="name" data-form-field="Name" required="" id="name">
                                 </div>
                             </div>
                             <div class="col-md-4 multi-horizontal" data-for="email">
                                 <div class="form-group">
-                                    <label class="form-control-label mbr-fonts-style display-7" for="email-form1-16">Correo </label>
-                                    <input type="email" class="form-control" name="email" data-form-field="Email" required="" id="email-form1-16">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="email-form1-m">Email</label>
+                                    <input type="email" class="form-control" name="email" data-form-field="Email" required="" id="email">
                                 </div>
                             </div>
                             <div class="col-md-4 multi-horizontal" data-for="phone">
                                 <div class="form-group">
-                                    <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-16">Teléfono </label>
-                                    <input type="tel" class="form-control" name="phone" data-form-field="Phone" id="phone-form1-16">
+                                    <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-m">Teléfono</label>
+                                    <input type="tel" class="form-control" name="phone" data-form-field="Phone" id="phone">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group" data-for="message">
-                            <label class="form-control-label mbr-fonts-style display-7" for="message-form1-16">Mensaje</label>
-                            <textarea type="text" class="form-control" name="message" rows="7" data-form-field="Message" id="message-form1-16"></textarea>
+                            <label class="form-control-label mbr-fonts-style display-7" for="message-form1-m">Mensaje</label>
+                            <textarea type="text" class="form-control" name="message" rows="7" data-form-field="Message" id="message"></textarea>
                         </div>
 
-                        <span class="input-group-btn"><button type="submit" class="btn btn-primary btn-form display-4" style="font-family: 'Poiret One',display; font-weight: bold; font-size: 22px !important; padding: 7px 24px">Enviar</button></span>
-                        
+                        <span class="input-group-btn">
+                            <button href="" type="submit" class="btn btn-primary btn-form display-4" style="font-family: 'Poiret One',display; font-weight: bold; font-size: 22px !important; padding: 7px 24px">Enviar</button>
+                        </span>
                     </form>
                 </div>
             </div>
@@ -586,7 +621,7 @@
                     <h2 class="align-left mbr-bold mbr-fonts-style display-2">Descargar en PDF</h2>
                 </div>
                 <div class="media-container-column col-12 col-lg-3 col-md-4">
-                    <div class="mbr-section-btn align-right py-4"><a class="btn btn-secondary-outline display-4" href="">PDF</a></div>
+                    <div class="mbr-section-btn align-right py-4"><a class="btn btn-secondary-outline display-4" href="assets/resume.pdf" target="_blank">PDF</a></div>
                 </div>
             </div>
         </div>
@@ -598,7 +633,9 @@
             <div class="media-container-row align-center mbr-white">
                 <div class="row row-links">
                     <ul class="foot-menu">
-                        <li class="foot-menu-item mbr-fonts-style display-7"><strong>Github</strong></li>
+                        <li class="foot-menu-item mbr-fonts-style display-7">
+                            <a href="https://github.com/romelgomez" target="_blank"><strong>Github</strong></a>                        
+                        </li>
                     </ul>
                 </div>
 
@@ -621,7 +658,115 @@
     <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
     <script src="assets/ytplayer/jquery.mb.ytplayer.min.js"></script>
     <script src="assets/parallax/jarallax.min.js"></script>
+    <script src="assets/swal/sweetalert.min.js"></script>
+    <script src="assets/jquery-easy-loading/jquery.loading.js"></script>
     <script src="assets/theme/js/script.min.js"></script>
+
+    <script>
+
+
+        setTimeout(function(){
+            console.log('ok');
+            
+            // https://stackoverflow.com/a/47140708/2513972
+            function strip(html){
+                var doc = new DOMParser().parseFromString(html, 'text/html');
+                return doc.body.textContent || "";
+            }
+
+            // form id: contact-form
+            // inputs id: name,  email, phone, message
+
+            let formReference = $("#contact-form");
+            let validatorFormReference = formReference
+                .validate({
+                    submitHandler: form => {
+
+                        let query_obj = {
+                            url: '/contact-me',
+                            data: {
+                                name:       $.trim(strip(form['name'].value)),
+                                email:      $.trim(strip(form['email'].value)),
+                                phone:      $.trim(strip(form['phone'].value)),
+                                message:    $.trim(strip(form['message'].value)),
+                            },
+                            type: 'POST',
+                            dataType: 'json'
+                        };
+
+                        $('#form1-m').loading({
+                            // stoppable: true,
+                            overlay: $("#new-overlay_loading-overlay"),
+                            message: 'Un momento ...'
+                        });
+
+
+                        $.ajax( query_obj )
+                            .then( response  => {
+                                swal({
+                                    text: "El mensaje ha sido enviado.",
+                                    icon: "success",
+                                    timer: 2000,
+                                    buttons: false
+                                });
+                                clearForm(formReference, validatorFormReference);
+
+                                $('#form1-m')
+                                    .loading('stop');
+                            })
+                            .fail(function(){
+                                $('#form1-m')
+                                    .loading('stop');
+
+                                swal('Oops, al parecer ha ocurrido un accidente al intentar enviar su mensaje! por favor llame al numero  +51 980 653 479, gracias por comprender.')
+                            });
+
+                    },
+                    rules: {
+                        'name' : {
+                            required: true,
+                        },
+                        'email' : {
+                            required: true,
+                            email: true
+                        },
+                        'phone' : {
+                            required: true,
+                        },
+                        'message' : {
+                            required: true,
+                        },
+                    },
+                    messages: {
+                        'name': {
+                            required : 'El nombre es requerido.',
+                        },
+                        'email': {
+                            required : 'El email es requerido.',
+                        },
+                        'phone': {
+                            required : 'El teléfono es requerido.',
+                        },
+                        'message': {
+                            required: 'El mensaje es requerido.',
+                        },
+                    }
+                });
+
+
+
+            function clearForm  ( form , validator = null ) {
+                if (validator !== null) {
+                    validator.resetForm();
+                } 
+                form
+                    .trigger("reset");
+            }
+
+
+        });
+    
+    </script>
 
 </body>
 

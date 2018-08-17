@@ -31,7 +31,7 @@ gulp.task('serve', function () {
     });
 });
 
-gulp.task('build_angular_project', function (cb) {
+gulp.task('ngBuild', function (cb) {
     exec('ng build --prod --build-optimizer', function (err, stdout, stderr) {
         console.log(stdout);
         console.log(stderr);

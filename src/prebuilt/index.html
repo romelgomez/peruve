@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="assets/mobirise-icons/mobirise-icons.min.css" type="text/css">
     <link rel="stylesheet" href="assets/theme/css/style.min.css" type="text/css">
     <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.min.css" type="text/css">
+    <link rel="stylesheet" href="assets/jquery-easy-loading/jquery.loading.css" type="text/css">
 
     <style>
         label.error {
@@ -50,7 +51,8 @@
 
                 </div>
             </div>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
                     <li class="nav-item">
                         <a class="nav-link link text-white display-4" href="/lima/blog">
@@ -65,7 +67,8 @@
                         Entrar
                     </a>
                 </div>
-            </div>
+            </div> -->
+
         </nav>
     </section>
 
@@ -439,7 +442,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="mbr-section-btn text-center pt-4"><a href="" class="btn btn-primary display-4">Solicitar</a></div>
+                        <div class="mbr-section-btn text-center pt-4"><a href="#form1-m" class="btn btn-primary display-4">Solicitar</a></div>
                     </div>
                 </div>
 
@@ -471,7 +474,7 @@
                                 <li class="list-group-item">Post Entrega: Mejoras, Modificaciones desde 9.99$</li>
                             </ul>
                         </div>
-                        <div class="mbr-section-btn text-center pt-4"><a href="" class="btn btn-primary display-4">Solicitar</a></div>
+                        <div class="mbr-section-btn text-center pt-4"><a href="#form1-m" class="btn btn-primary display-4">Solicitar</a></div>
                     </div>
                 </div>
 
@@ -514,7 +517,7 @@
                                 <li class="list-group-item">Post Entrega: Mejoras, Modificaciones desde 7.99$</li>
                             </ul>
                         </div>
-                        <div class="mbr-section-btn text-center pt-4"><a href="" class="btn btn-primary display-4">Solicitar</a></div>
+                        <div class="mbr-section-btn text-center pt-4"><a href="#form1-m" class="btn btn-primary display-4">Solicitar</a></div>
                     </div>
                 </div>
 
@@ -593,6 +596,13 @@
         </div>
     </section>
 
+    <div id="new-overlay_loading-overlay" class="loading-overlay loading-theme-dark loading-hidden" style="display: none;">
+        <div class="loading-overlay-content">
+            <img src="assets/images/pacman.svg"><br>
+            Un momento ...
+        </div>
+    </div>
+
     <section class="mbr-section form1 cid-r0687OSaWs mbr-parallax-background" id="form1-m">
 
         <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(0, 0, 0);">
@@ -617,7 +627,7 @@
                         inputs id: name,  email, phone, message
                      -->
 
-                    <form id="contact-form" class="mbr-form">
+                    <form id="contact-form" class="mbr-form" novalidate action=""> 
                         <div class="row row-sm-offset">
                             <div class="col-md-4 multi-horizontal" data-for="name">
                                 <div class="form-group">
@@ -688,7 +698,7 @@
                     Links
                 </h5>
                     <p class="mbr-text">
-                        <a href="/lima/blog">Blog</a><br>
+                        <!-- <a href="/lima/blog">Blog</a><br> -->
                         <a href="/my-resume">Resumen</a>
                     </p>
                 </div>
@@ -724,6 +734,8 @@
     <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
     <script src="assets/ytplayer/jquery.mb.ytplayer.min.js"></script>
     <script src="assets/parallax/jarallax.min.js"></script>
+    <script src="assets/swal/sweetalert.min.js"></script>
+    <script src="assets/jquery-easy-loading/jquery.loading.js"></script>
     <script src="assets/theme/js/script.min.js"></script>
 
     <script>
@@ -747,7 +759,7 @@
                     submitHandler: form => {
 
                         let query_obj = {
-                            url: '/',
+                            url: '/contact-me',
                             data: {
                                 name:       $.trim(strip(form['name'].value)),
                                 email:      $.trim(strip(form['email'].value)),
@@ -758,17 +770,32 @@
                             dataType: 'json'
                         };
 
-                        console.log('query_obj: ', query_obj);
+                        $('#form1-m').loading({
+                            // stoppable: true,
+                            overlay: $("#new-overlay_loading-overlay"),
+                            message: 'Un momento ...'
+                        });
 
-                        // clearForm(formReference, validatorFormReference);
-                        // swal('El mensaje ha sido enviado.');
-                        // $.ajax( query_obj )
-                        //     .then( response  => {
-                        //         swal(response.mensaje);
-                        //     })
-                        //     .catch( error => {
-                        //         swal(error.mensaje);
-                        //     });
+
+                        $.ajax( query_obj )
+                            .then( response  => {
+                                swal({
+                                    text: "El mensaje ha sido enviado.",
+                                    icon: "success",
+                                    timer: 2000,
+                                    buttons: false
+                                });
+                                clearForm(formReference, validatorFormReference);
+
+                                $('#form1-m')
+                                    .loading('stop');
+                            })
+                            .fail(function(){
+                                $('#form1-m')
+                                    .loading('stop');
+
+                                swal('Oops, al parecer ha ocurrido un accidente al intentar enviar su mensaje! por favor llame al numero  +51 980 653 479, gracias por comprender.')
+                            });
 
                     },
                     rules: {

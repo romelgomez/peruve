@@ -60,9 +60,15 @@ export class Routes {
         limaRoute(req, res);
     });
 
-    // app.get('/contact', function(req: express.Request, res: express.Response) {
-    //     this.defaultRoute(req, res);
-    // });
+    app.post('/contact-me', function(req: express.Request, res: express.Response) {
+        res.send({
+            result: 'ok',
+            data: req.body
+        });
+
+        // res.status(400);
+        // res.send('None shall pass');
+    });
 
     // app.get('/login', function(req: express.Request, res: express.Response) {
     //     this.defaultRoute(req, res);
