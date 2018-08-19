@@ -8,7 +8,7 @@ import { send } from 'q';
 // const Q = require('q');
 import * as Q from 'q';
 import * as sgMail from '@sendgrid/mail';
-sgMail.setApiKey('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');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export class Routes {
 

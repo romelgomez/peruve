@@ -3,7 +3,7 @@ exports.__esModule = true;
 // normalize the paths : http://stackoverflow.com/questions/9756567/do-you-need-to-use-path-join-in-node-js
 var path = require("path");
 var sgMail = require("@sendgrid/mail");
-sgMail.setApiKey('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');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 var Routes = /** @class */ (function () {
     function Routes() {
     }
