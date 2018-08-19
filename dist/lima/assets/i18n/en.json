@@ -1,0 +1,6 @@
+{
+    "myResume": {
+        "HELLO": "Hello {{ value }}, and you too: {{ name }} {{lastName}}",
+        "start": "Hi there! I’m Romel. Professional speaking I see myself as a programmer. Currently, I into pick up Angular 5.x, RxJS, and Material. And at some point, I write code to use AngularJS 1.x, Algolia, Cloudinary, Node, Express, Firebase, Gulp, TypeScript, Bootstrap, jQuery, CakePHP 2.x, Openshift, GoLang, PHP, JAVA, MySql, Google App Engine for Java, Spring MVC 3.X, 2checkout. etc. So I also work with many CMS in my 20s. I love programming, riding a BMX, and hot coffee with chocolate. I enjoy learning new things. And that's me, interesting ah!"
+    }
+}
