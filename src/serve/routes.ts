@@ -3,16 +3,19 @@
 // normalize the paths : http://stackoverflow.com/questions/9756567/do-you-need-to-use-path-join-in-node-js
 import * as path from 'path';
 import * as express from 'express';
+import { send } from 'q';
 
-// to adequate Angular build /dist/project_name/files...
-// const angular = require('./../../angular.json');
-
-
+// const Q = require('q');
+import * as Q from 'q';
+import * as sgMail from '@sendgrid/mail';
+sgMail.setApiKey('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');
 
 export class Routes {
 
 
   paths(app: express.Application) {
+
+
 
     /**
      *  GENERICS ROUTES
@@ -61,47 +64,44 @@ export class Routes {
     });
 
     app.post('/contact-me', function(req: express.Request, res: express.Response) {
-        res.send({
-            result: 'ok',
-            data: req.body
-        });
+        // name: string;
+        // email: string;
+        // phone: string;
+        // message: string;
 
-        // res.status(400);
-        // res.send('None shall pass');
+        const emailData = req.body;
+
+        const msg = {
+            to: 'bmxandcode@gmail.com',
+            from: emailData['email'],
+            subject: 'Hola Romel, al parecer tienes un nuevo cliente!',
+            text: `
+                Aquí el mensaje
+                ---------------------------------------------- \n
+                Nombre:     ${emailData['name']} \n
+                Correo:     ${emailData['email']} \n
+                Telefono:   ${emailData['phone']} \n
+                Mensaje:    ${emailData['message']} \n
+            `,
+        };
+
+        sgMail.send(msg)
+            .then( sg_res => {
+                res.send({
+                    result: 'ok',
+                    details: sg_res
+                });
+            }, err => {
+                res.status(400);
+                res.send({
+                    result: 'fail',
+                    details: err
+                });
+            });
+
+
     });
 
-    // app.get('/login', function(req: express.Request, res: express.Response) {
-    //     this.defaultRoute(req, res);
-    // });
-
-    // app.get('/account', function(req: express.Request, res: express.Response) {
-    //     this.defaultRoute(req, res);
-    // });
-
-    // app.get('/terms-of-service', function(req: express.Request, res: express.Response) {
-    //     this.defaultRoute(req, res);
-    // });
-
-    // app.get('/privacy-policy', function(req: express.Request, res: express.Response) {
-    //     this.defaultRoute(req, res);
-    // });
-
-    // // TO-DO API
-    // app.post('/api/to-do', function(req: express.Request, res: express.Response) {
-    //     console.log('sabe one to-do ');
-    // });
-
-    // app.get('/api/to-do', function(req: express.Request, res: express.Response) {
-    //     console.log('Get all to-do');
-    // });
-
-    // app.get('/api/to-do/:id', function(req: express.Request, res: express.Response) {
-    //     console.log('get to-do by id:', req.params.id);
-    // });
-
-    // app.get('/oops', (req: express.Request, res: express.Response) => {
-    //   this.defaultRoute(req, res);
-    // });
 
     app.get('*', (req: express.Request, res: express.Response) => {
         defaultRoute(req, res);

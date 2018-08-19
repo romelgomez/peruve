@@ -11,8 +11,6 @@ var useref  = require('gulp-useref');
 var uglify  = require('gulp-uglify');
 var htmlmin = require('gulp-htmlmin');
 
-
-
 // npx ts-node dist/server/development.ts
 gulp.task('devServe', function () {
     nodemon({
@@ -55,25 +53,16 @@ gulp.task('buildServe', function() {
         .pipe(gulp.dest('dist/server'));
 });
 
-// gulp.task('', function() {
-//     return gulp.src('dist/peruve/index.html')
-//       .pipe(useref())
-//       .pipe(gulpif('*.js', uglify()))
-//       .pipe(gulpif('*.css', csso()))
-//       .pipe(gulpif('*.html', htmlmin({collapseWhitespace: true})))
-//       .pipe(gulp.dest('dist/peruve/'));
-//   });
-
 gulp.task('prefabricated', function () {
     return gulp.src(['src/prebuilt/**/*'])
-        // .pipe(useref())
-        // .pipe(gulpif('*.js', uglify()))
-        // .pipe(gulpif('*.css', csso()))
-        // .pipe(gulpif('*.html', htmlmin({collapseWhitespace: true})))
+        // .pipe(useref()) // Don't work
+        .pipe(gulpif('*.js', uglify()))
+        .pipe(gulpif('*.css', csso()))
+        .pipe(gulpif('*.html', htmlmin({collapseWhitespace: true})))
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('build', ['build_angular_project', 'prefabricated'], function() {
+gulp.task('build', ['ngBuild', 'prefabricated'], function() {
     return gulp.start('buildServe');
 });
 
